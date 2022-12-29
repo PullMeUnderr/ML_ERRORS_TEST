@@ -4,8 +4,8 @@ error_list_xlsx = openpyxl.open("Spisok_oshibok_ML_dlya_programmy_Python.xlsx", 
 
 error_list = error_list_xlsx.active
 while True:
-    print("Введите номер вашей ошибки:")
-    number = int(input())
+
+    number = int(input("Введите номер вашей ошибки: "))
 
 
     def error_search(error_number):
@@ -19,6 +19,7 @@ while True:
 
         if flag == False:
             return "Такой ошибки не существует!"
+
 
     print()
     print(error_search(number))
