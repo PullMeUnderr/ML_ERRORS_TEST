@@ -14,7 +14,7 @@ while True:
             error_line = error_list[i][0].value
             if str(error_number).isdigit() == False:
                 return "Это не номер ошибки"
-            if str(error_number) in error_line[:6] and str(error_number) == error_line[:6] and str(error_number).isdigit() == True:
+            elif str(error_number) in error_line[:6] and str(error_number) == error_line[:6] and str(error_number).isdigit() == True:
                     error_text = error_list[i][0].value
                     flag = True
                     return f"Ваша ошибка:{error_text[6:].title()}"
