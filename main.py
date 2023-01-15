@@ -1,12 +1,16 @@
 import openpyxl
 
+# Чтение файла ecxel и запрет на его редактирование
 error_list_xlsx = openpyxl.open("stanok_error_list.xlsx", read_only=True)
 cycle = True
+
+
+# Функция выбора станка, которая ссылается на индекс страницы ecxel
 def machine_selection():
-   while True:
+    while True:
         ktf = ["ktf", "KTF", "КТФ", "ктф", "rna", "RNF", "ЛЕА", "леа"]
         ml = ["ML", "ml", "мл", "МЛ", "ьд", "ЬД", "vk", "VK", "TBT", "tbt", "тбт", "ТБТ", "n,n", "N,N", "ЕИЕ", "еие"]
-        machine = input("Выберите ваш станок: ")
+        machine = input("Выберите ваш станок: ")  # Выбор станка по его названию
         if machine.lower() in ml:
             return error_list_xlsx.worksheets[0]
         elif machine.lower() in ktf:
@@ -14,24 +18,32 @@ def machine_selection():
         else:
             print("Станок не найден")
 
-error_list = machine_selection()
+
+error_list = machine_selection()  # Эта переменная получает индекс страницы из функции machine_selection
+
+# Если станок не найден, то цикл выполнения поиска ошибки не запускается
+
 if error_list != error_list_xlsx.worksheets[0] and error_list != error_list_xlsx.worksheets[1]:
     cycle = False
+else:
+    cycle = True
 while cycle == True:
 
     number = input("Введите номер вашей ошибки: ")
 
 
+    # Функция нахождения ошибки по ее номеру
     def error_search(error_number):
         flag = False
         for i in range(1, error_list.max_row + 1):
             error_line = error_list[i][0].value
             if str(error_number).isdigit() == False:
                 return "Это не номер ошибки"
-            elif str(error_number) in error_line[:6] and str(error_number) == error_line[:6] and str(error_number).isdigit() == True:
-                    error_text = error_list[i][0].value
-                    flag = True
-                    return f"Ваша ошибка:{error_text[6:].title()}"
+            elif str(error_number) in error_line[:6] and str(error_number) == error_line[:6] and str(
+                    error_number).isdigit() == True:
+                error_text = error_list[i][0].value
+                flag = True
+                return f"Ваша ошибка:{error_text[6:].title()}"
 
         if flag == False:
             return "Такой ошибки не существует!"
