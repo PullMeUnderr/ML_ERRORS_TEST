@@ -28,27 +28,25 @@ if error_list != error_list_xlsx.worksheets[0] and error_list != error_list_xlsx
 else:
     cycle = True
 
-while cycle == True:
+while cycle:
 
     number = input("Введите номер вашей ошибки: ")
 
 
     # Функция нахождения ошибки по ее номеру
     def error_search(error_number):
-        flag = False
         for i in range(1, error_list.max_row + 1):
             error_line = error_list[i][0].value
-            if str(error_number).isdigit() == False:
+            if not str(error_number).isdigit():
                 return "Это не номер ошибки"
             elif str(error_number) in error_line[:6] and str(error_number) == error_line[:6] and str(
-                    error_number).isdigit() == True:
-                error_text_0 = error_list[i][0].value
-                error_text_1 = error_list[i][1].value
+                    error_number).isdigit() is True:
+                error_text_0 = error_list[i][0].value  # Столбец с номером ошибки и ее содержанием
+                error_text_1 = error_list[i][1].value  # Столбец с решением ошибки
 
-                flag = True
                 return f"Ваша ошибка:{error_text_0[6:]} / Решение: {error_text_1}"
 
-        if flag == False:
+        else:
             return "Такой ошибки не существует!"
 
 
