@@ -10,11 +10,17 @@ def machine_selection():
     while True:
         ktf = ["ktf", "KTF", "КТФ", "ктф", "rna", "RNF", "ЛЕА", "леа"]
         ml = ["ML", "ml", "мл", "МЛ", "ьд", "ЬД", "vk", "VK", "TBT", "tbt", "тбт", "ТБТ", "n,n", "N,N", "ЕИЕ", "еие"]
+        kss_800 = ["kss 800", "KSS 800", "ксс 800", "КСС 800", "800", "ЛЫЫ 800", "лыы 800", "rcc 800", "RCC 800"]
+        kss_1250 = ["kss 1250", "KSS 1250", "ксс 1250", "КСС 1250", "1250", "ЛЫЫ 1250", "лыы 1250", "rcc 1250", "RCC 1250"]
         machine = input("Выберите ваш станок: ")  # Выбор станка по его названию
         if machine.lower() in ml:
             return error_list_xlsx.worksheets[0]
         elif machine.lower() in ktf:
             return error_list_xlsx.worksheets[1]
+        elif machine.lower() in kss_800:
+            return error_list_xlsx.worksheets[2]
+        elif machine.lower() in kss_1250:
+            return error_list_xlsx.worksheets[3]
         else:
             print("Станок не найден")
 
@@ -23,7 +29,7 @@ error_list = machine_selection()  # Эта переменная получает
 
 # Если станок не найден, то цикл выполнения поиска ошибки не запускается
 
-if error_list != error_list_xlsx.worksheets[0] and error_list != error_list_xlsx.worksheets[1]:
+if error_list != error_list_xlsx.worksheets[0] and error_list != error_list_xlsx.worksheets[1] and error_list != error_list_xlsx.worksheets[2] and error_list != error_list_xlsx.worksheets[3]:
     cycle = False
 else:
     cycle = True
