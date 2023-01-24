@@ -44,7 +44,7 @@ while cycle:
                 error_text_0 = error_list[i][0].value  # Столбец с номером ошибки и ее содержанием
                 error_text_1 = error_list[i][1].value  # Столбец с решением ошибки
 
-                return f"Ваша ошибка:{error_text_0[6:]} / Решение: {error_text_1}"
+                return f"Ваша ошибка:{error_text_0[6:]}\nРешение: {error_text_1}"
 
         else:
             return "Такой ошибки не существует!"
